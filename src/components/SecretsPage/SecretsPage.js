@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Chart from '../Chart/Chart';
 
 class SecretsPage extends Component {
   componentDidMount() {
@@ -10,14 +11,8 @@ class SecretsPage extends Component {
     return (
       <div>
         
+        <Chart/>
         
-        <ul>
-          {this.props.secrets.map(secret => (
-            <li>
-              Clearance: | Content: 
-            </li>
-          ))}
-        </ul>
       </div>
     );
   }
