@@ -1,28 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //npm install --save react-chartjs-2 chart.js
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 class Chart extends Component {
-  state = {
-    chartData: {
-      labels: ['one', 'two', 'three'],
-      datasets: [
-        {
-          label: 'Population',
-          data: [
-            33, 45, 67
-          ],
 
-        }
-      ]
-    }
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_CHART' })
+    console.log('inside dispatch', this.props.chart)
   }
 
+  values = () => {
+    let emotionValues = [];
+    this.props.chart.map((item, index) => {
+      emotionValues.push(item.emotion_value);
+      
+
+      // return (
+      //   item.emotion_value
+      // )
+    })
+    console.log(emotionValues)
+    return emotionValues;
+}
+
+  state = {
+    chartData: {
+      labels: this.props.chart.map((item, index) => {
+        return (
+          item.date_logged
+        )
+      }), //need to be the date of entries
+      datasets: [
+        {
+          label: 'Mood over time',
+          data: this.values() //dont have an array in an array
+
+        }
+        //end dataset
+      ] //end datset
+    }
+  } //end chartData
+
+
   render() {
+    console.log('inside render', this.props.chart)
     return (
-      <div className="chart" style={{width:"80%"}}>
-        <Bar
+      <div className="chart" style={{ width: "80%" }}>
+        <Line
           data={this.state.chartData}
           width={20}
           height={3}
@@ -30,6 +55,7 @@ class Chart extends Component {
             maintainAspectRatio: true
           }} />
 
+        <pre>{JSON.stringify(this.props.chart)}</pre>
 
       </div>
     );
@@ -37,7 +63,7 @@ class Chart extends Component {
 }
 
 const mapStateToProps = state => ({
-  errors: state.errors,
+  chart: state.chart,
 });
 
 export default connect(mapStateToProps)(Chart);

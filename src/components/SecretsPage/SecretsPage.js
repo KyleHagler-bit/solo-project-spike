@@ -4,7 +4,7 @@ import Chart from '../Chart/Chart';
 
 class SecretsPage extends Component {
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_SECRETS'});
+    
   }
 
   render() {
