@@ -7,7 +7,7 @@ class SecretsPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <Chart/>
         <PieChart/>
       </div>

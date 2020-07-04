@@ -14,7 +14,7 @@ class Chart extends Component {
     let emotionValues = [];
     this.props.chart.map((item, index) => {
       emotionValues.push(item.emotion_value);
-      
+
 
       // return (
       //   item.emotion_value
@@ -22,7 +22,7 @@ class Chart extends Component {
     })
 
     return emotionValues;
-}
+  }
 
   state = {
     chartData: {
