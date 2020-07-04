@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Chart from '../Chart/Chart';
+import PieChart from '../PieChart/PieChart';
 
 class SecretsPage extends Component {
-  componentDidMount() {
-    
-  }
 
   render() {
     return (
       <div>
-        
         <Chart/>
-        
+        <PieChart/>
       </div>
     );
   }

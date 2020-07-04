@@ -7,7 +7,7 @@ class Chart extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CHART' })
-    console.log('inside dispatch', this.props.chart)
+
   }
 
   values = () => {
@@ -20,7 +20,7 @@ class Chart extends Component {
       //   item.emotion_value
       // )
     })
-    console.log(emotionValues)
+
     return emotionValues;
 }
 
@@ -34,8 +34,8 @@ class Chart extends Component {
       datasets: [
         {
           label: 'Mood over time',
-          data: this.values() //dont have an array in an array
-
+          data: this.values(), //dont have an array in an array
+          backgroundColor: '#7FFFD4'
         }
         //end dataset
       ] //end datset
@@ -55,7 +55,7 @@ class Chart extends Component {
             maintainAspectRatio: true
           }} />
 
-        <pre>{JSON.stringify(this.props.chart)}</pre>
+        {/* <pre>{JSON.stringify(this.props.chart)}</pre> */}
 
       </div>
     );
