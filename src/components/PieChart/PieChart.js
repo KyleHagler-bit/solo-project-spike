@@ -95,7 +95,12 @@ return generatedColors;
           width={20}
           height={3}
           options={{
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+            title:{
+              display: true,
+              fontSize:24,
+              text: 'Activities Breakdown'
+            }
           }} />
 
         <pre>{JSON.stringify(this.props.pie)}</pre>
