@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -7,7 +7,7 @@ import {
   BrowserRouter
 } from 'react-router-dom';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -18,7 +18,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import SecretsPage from '../SecretsPage/SecretsPage';
 
-import { Transition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 //npm install react-transition-group --save
 
 import { play, exit } from '../timelines/index'
@@ -26,8 +26,8 @@ import { play, exit } from '../timelines/index'
 import './App.css';
 
 class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' })
   }
 
   render() {
@@ -36,13 +36,27 @@ class App extends Component {
         <div className='app'>
           <Nav />
 
-          <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route exact path="/about" component={AboutPage}/>
-            <ProtectedRoute exact path="/home" component={UserPage}/>
-            <ProtectedRoute exact path="/secrets" component={SecretsPage}/>
-            <Route render={() => <h1>404</h1>} />
-          </Switch>
+        <Route render={({location}) => (
+
+          <TransitionGroup>
+            <CSSTransition
+            key={location.key} //unique identifier
+              timeout={300}
+              classNames="fade">
+
+              <Switch location={location}> {/*render route at the right time */}
+                <Redirect exact from="/" to="/home" />
+                <Route exact path="/about" component={AboutPage} />
+                <ProtectedRoute exact path="/home" component={UserPage} />
+                <ProtectedRoute exact path="/secrets" component={SecretsPage} />
+                <Route render={() => <h1>404</h1>} />
+              </Switch>
+
+            </CSSTransition>
+          </TransitionGroup>
+
+        )}/>
+
 
           {/* <Route render={(location) => {
             return (
@@ -59,7 +73,8 @@ class App extends Component {
           <Footer />
         </div>
       </BrowserRouter>
-  )}
+    )
+  }
 }
 
 // render() {

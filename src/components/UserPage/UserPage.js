@@ -6,7 +6,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.usrne` you could use `user.usrnme`
 const UserPage = (props) => (
-  <div>
+  <div className="page">
     <h1 id="welcome">
       Welcome, 
     </h1>
