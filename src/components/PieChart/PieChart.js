@@ -24,6 +24,7 @@ class PieChart extends Component {
     return activityCount;
 }
 
+//LOOK INTO OTHER PROGRAM TO MAKE SURE COLORS ARE TRULY RANDOMIZED
 colors = () =>{
   let generatedColors = [];
 

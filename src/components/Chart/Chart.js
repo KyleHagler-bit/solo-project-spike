@@ -75,7 +75,7 @@ class Chart extends Component {
               }],
               yAxes: [{
                 ticks: {
-                  min: 1, max: 7,
+                  min: 0, max: 7,
                   fontColor: 'green',
                   callback: function (label, index, labels) {
                     switch (label) { //Allows us to change the yaxis labels
